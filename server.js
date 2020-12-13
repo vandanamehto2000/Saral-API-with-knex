@@ -13,6 +13,7 @@ require('./routers/join_tables')(router)
 require('./routers/saral_api')(router)
 require('./routers/create')(router)
 require('./routers/update')(router)
+require('./routers/delete')(router)
 
 app.listen(8000, () => {
     console.log('server started on port 8000');

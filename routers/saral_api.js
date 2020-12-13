@@ -18,7 +18,7 @@ module.exports = (Router) => {
                                     // console.log([index.usersubmissions])
                                     // chapter data is coming
                                     // console.log(index)
-                                    if(index.courseid == count.course_id && index.id == count.id){
+                                    if(index.course_id == count.course_id && index.id == count.id){
                                         course_list.push(index)
                                     }
                                 }

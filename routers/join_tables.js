@@ -1,14 +1,13 @@
 const knex = require('../connection/knex_connection')
 const fs = require('fs')
-const { Router } = require('express')
 
 module.exports = (Router) => {
     Router.get('/saral/:id', (req, res) => {
         id = req.params.id
 
-        knex.select('*').from('courses').where('id', id).then((listOfCourses) => {
+        knex.select('*').from('courses').where('id', id).then((data) => {
             // console.log(listOfCourses)
-            if(listOfCourses.length > 0){
+            if(data.length > 0){
                 knex.select('*').from('exercise').where('id', id).then((listOfExercises) => {
 
                     knex.select('*').from('chapter').where('id', id).then((listOfChapters) => {
@@ -19,30 +18,30 @@ module.exports = (Router) => {
                                 if(listOfChapters.length >= 1){
                                     // console.log(listOfChapters)
                                     empty_list = []
-                                    for(values of listOfChapters){
+                                    for(index of listOfChapters){
                                         // console.log(values)
-                                        if(listOfChapters.courseid == value.courseid){
-                                            empty_list.push(values)
+                                        if(index.course_id == value.course_id){
+                                            empty_list.push(index)
 
                                         }
                                     }
-                                    listOfChapters['chapter'] = empty_list
-                                    listOfExercises_list.push(listOfChapters)
+                                    value['usersummision'] = empty_list
+                                    listOfExercises_list.push(value)
                                 }
                                 else{
-                                    listOfExercises_list.push(listOfChapters)
+                                    listOfExercises_list.push(value)
                                 }
                                 // console.log(listOfExercises_list)
 
                             }
-                            listOfCourses[0].exercise = listOfExercises_list
-                            console.log(listOfCourses)
-                            res.send(listOfCourses)
+                            data[0].submission = listOfExercises_list
+                            console.log(data)
+                            res.send(data)
 
                         }
                         else{
-                            console.log(listOfCourses)
-                            res.send(listOfCourses)
+                            console.log(data)
+                            res.send(data)
                         }
 
                     })
@@ -51,7 +50,79 @@ module.exports = (Router) => {
             }
             else{
                 console.log('data is not available')
+                res.send('data is not available')
             }
         })
     })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const knex = require('../connection/knex_connection')
+// const fs = require('fs')
+// const { Router } = require('express')
+
+// module.exports = (Router) => {
+//     Router.get('/saral/:id', (req, res) => {
+//         id = req.params.id
+
+//         knex.select('*').from('courses').where('id', id).then((listOfCourses) => {
+//             // console.log(listOfCourses)
+//             if(listOfCourses.length > 0){
+//                 knex.select('*').from('exercise').where('id', id).then((listOfExercises) => {
+
+//                     knex.select('*').from('chapter').where('id', id).then((listOfChapters) => {
+//                         if(listOfExercises.length > 1){
+//                             listOfExercises_list = []
+//                             for(value of listOfExercises){
+//                                 // console.log(value)
+//                                 if(listOfChapters.length >= 1){
+//                                     // console.log(listOfChapters)
+//                                     empty_list = []
+//                                     for(values of listOfChapters){
+//                                         // console.log(values)
+//                                         if(listOfChapters.courseid == value.courseid){
+//                                             empty_list.push(values)
+
+//                                         }
+//                                     }
+//                                     listOfChapters['chapter'] = empty_list
+//                                     listOfExercises_list.push(listOfChapters)
+//                                 }
+//                                 else{
+//                                     listOfExercises_list.push(listOfChapters)
+//                                 }
+//                                 // console.log(listOfExercises_list)
+
+//                             }
+//                             listOfCourses[0].exercise = listOfExercises_list
+//                             console.log(listOfCourses)
+//                             res.send(listOfCourses)
+
+//                         }
+//                         else{
+//                             console.log(listOfCourses)
+//                             res.send(listOfCourses)
+//                         }
+
+//                     })
+//                 })
+
+//             }
+//             else{
+//                 console.log('data is not available')
+//             }
+//         })
+//     })
+// }

@@ -2,13 +2,10 @@ const knex = require('../connection/knex_connection')
 const fs = require('fs')
 const courses = require('./courses')
 const exercise = require('./exercise')
-// const { Router } = require('express')
 
 module.exports = (Router) => {
     // posting the course data on database
     Router.post('/courses', (req, res) => {
-        // var file = JSON.parse(fs.readFileSync('//home/navgurukul/Desktop/Saral_Api/file.txt'))
-        // for(Course of file){
             var dictOfCourse = {
                 id: req.body.id,
                 name: req.body.name,
@@ -28,8 +25,8 @@ module.exports = (Router) => {
       
     })
 
-    .get('/get/courses', (req, res) => {
-        knex.select('*').from('courses').then((data) => {
+    .get('/get/exercise', (req, res) => {
+        knex.select('*').from('exercise').then((data) => {
             res.send(data)
         })
     })
@@ -69,7 +66,7 @@ module.exports = (Router) => {
     .post('/chapter', (req, res) => {
         var dictOfChapter = {
             id: req.body.id,
-            courseid: req.body.courseid,
+            course_id: req.body.course_id,
             username: req.body.username,
             usersubmissions: req.body.usersubmissions
         }

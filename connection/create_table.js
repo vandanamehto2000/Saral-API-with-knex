@@ -25,7 +25,7 @@ knex.schema.hasTable('chapter').then((exists) => {
     if(!exists) {
         return knex.schema.createTable('chapter', (table) => {
             table.integer('id').unsigned().references('id').inTable('courses');
-            table.integer('courseid');
+            table.integer('course_id');
             table.string('username');
             table.string('usersubmissions');
         })
