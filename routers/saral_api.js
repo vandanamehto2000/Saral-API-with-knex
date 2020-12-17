@@ -1,3 +1,4 @@
+
 const knex = require('../connection/knex_connection')
 
 module.exports = (Router) => {
@@ -23,15 +24,15 @@ module.exports = (Router) => {
                                     }
                                 }
 
-                                // counter.usersubmissions = course_list
-                                // listOfChapters.push(counter)
-                                // console.log(listOfChapters)
+                    //             // counter.usersubmissions = course_list
+                    //             // listOfChapters.push(counter)
+                    //             // // console.log(listOfChapters)
                             
-                                count.usersummision = listOfChapters
+                                count.usersummision = course_list
                                 listOfExercises_list.push(count)
                                 // console.log(listOfExercises_list)
-
                             }
+                            
                         }
                         counter.submission = listOfExercises_list
                         varx.push(counter)

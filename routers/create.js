@@ -1,9 +1,6 @@
 const knex = require('../connection/knex_connection')
-const fs = require('fs')
-const courses = require('./courses')
-const exercise = require('./exercise')
 
-module.exports = (Router) => {
+module.exports = (Router, auth) => {
     // posting the course data on database
     Router.post('/courses', (req, res) => {
             var dictOfCourse = {
@@ -25,8 +22,8 @@ module.exports = (Router) => {
       
     })
 
-    .get('/get/exercise', (req, res) => {
-        knex.select('*').from('exercise').then((data) => {
+    .get('/get/courses', (req, res) => {
+        knex.select('*').from('courses').then((data) => {
             res.send(data)
         })
     })
