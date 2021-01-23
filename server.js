@@ -20,7 +20,7 @@ require('./routers/update')(router)
 require('./routers/delete')(router)
 require('./routers/signup')(router)
 require('./routers/login')(router)
-require('./routers/Authorize')(router)
+require('./routers/verification')(router)
 
 
 app.listen(8000, () => {

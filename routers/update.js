@@ -1,31 +1,30 @@
 const knex = require('../connection/knex_connection')
-const fs = require('fs')
 const jwt = require('jsonwebtoken')
-const auth = require('../routers/Authorize')
+const auth = require('./verification')
 
+
+// module.exports = (Router) => {
+//     Router.put('/update/update/:id', (req, res) => {
+//         knex('courses')
+//         .where('id', req.params.id)
+//         .update({
+//             name: req.body.name,
+//             description: req.body.description
+//         })
+//         .then((result) => {
+//             console.log(result)
+//             res.send('updated courses..')
+//         })
+//         .catch((err) => {
+//             res.send(err)
+//         })
+
+//     })
+
+// }
 
 module.exports = (Router) => {
-    Router.put('/update/update/:id', (req, res) => {
-        knex('courses')
-        .where('id', req.params.id)
-        .update({
-            name: req.body.name,
-            description: req.body.description
-        })
-        .then((result) => {
-            console.log(result)
-            res.send('updated courses..')
-        })
-        .catch((err) => {
-            res.send(err)
-        })
-
-    })
-
-}
-
-module.exports = (Router) => {
-    Router.put('/put/courses/:id', (req, res) => {
+    Router.put('/update/courses/:id',(req, res) => {
         // var id = req.params.id
         var token = req.headers.cookie.split(' ')
         // console.log(token)
@@ -48,7 +47,7 @@ module.exports = (Router) => {
                 })
             }
             else{
-                console.length(err)
+                console.log(err)
                 res.send(err)
             }
         })

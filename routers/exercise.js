@@ -2,7 +2,8 @@ const knex = require('../connection/knex_connection')
 const fs = require('fs')
 
 module.exports = (Router) => {
-    // whole exercise is coming by id only
+
+    // we will get the exercise by courses id
     Router.get('/courses/:id/exercise', (req, res) => {
         var file = JSON.parse(fs.readFileSync('//home/navgurukul/Desktop/Saral_Api/file.txt'))
         knex.select('*').from('exercise')
@@ -19,6 +20,7 @@ module.exports = (Router) => {
                         dictOfSubCourse['description']=subCourse.description
                         listOfSubCourses.push(dictOfSubCourse)
                     }
+                    // console.log(listOfSubCourses)
                     listOfExercises.push(listOfSubCourses)
                 }
             }
@@ -50,7 +52,6 @@ module.exports = (Router) => {
                             dictOfSubCourse['courseid']=subCourse.courseid
                             dictOfSubCourse['name']=subCourse.name
                             dictOfSubCourse['description']=subCourse.description
-                            // dictOfSubCourse['courseid']=subCourse.courseid
                             listOfSubCourses.push(dictOfSubCourse)
                         }
                     }

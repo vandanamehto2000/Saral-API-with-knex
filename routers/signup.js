@@ -1,4 +1,3 @@
-const { Router } = require('express')
 const knex = require('../connection/knex_connection')
 
 module.exports = (Router) => {

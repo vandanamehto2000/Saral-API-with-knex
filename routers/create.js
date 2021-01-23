@@ -1,14 +1,15 @@
 const knex = require('../connection/knex_connection')
 
-module.exports = (Router, auth) => {
-    // posting the course data on database
+module.exports = (Router) => {
+
+    // we will insert the courses data here
     Router.post('/courses', (req, res) => {
             var dictOfCourse = {
                 id: req.body.id,
                 name: req.body.name,
                 description: req.body.description
             }
-        // }
+
         knex('courses').insert(dictOfCourse)
         .then((listOfCourses) => {
             listOfCourses.push(dictOfCourse)
@@ -21,13 +22,22 @@ module.exports = (Router, auth) => {
         })
       
     })
-
-    .get('/get/courses', (req, res) => {
-        knex.select('*').from('courses').then((data) => {
+    
+    // we can get the data which we inserted before 
+    .get('/get/chapter', (req, res) => {
+        knex.select('*').from('chapter')
+        .then((data) => {
+            console.log(data)
             res.send(data)
+        })
+        .catch((err) => {
+            console.log(err)
+            res.send(err)
         })
     })
 
+
+// we can get the data by id which we inserted before 
     .get('/get/courses/:id', (req, res) => {
         var id = req.params.id
         knex.select('*').from('courses')
@@ -40,6 +50,8 @@ module.exports = (Router, auth) => {
         })
     })
     
+
+    // we will insert the exercise data here
     .post('/exercise', (req, res) => {
         var dictOfCourse = {
             id: req.body.id,
@@ -59,7 +71,7 @@ module.exports = (Router, auth) => {
         })
     })
 
-
+// we will insert the chapter data here
     .post('/chapter', (req, res) => {
         var dictOfChapter = {
             id: req.body.id,

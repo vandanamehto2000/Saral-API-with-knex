@@ -1,6 +1,5 @@
 const knex = require('../connection/knex_connection')
 const jwt = require('jsonwebtoken')
-const { Router } = require('express')
 
 module.exports = (Router) => {
     Router.post('/login', (req, res) => {
@@ -8,7 +7,7 @@ module.exports = (Router) => {
         .then((data) => {
             // console.log(data)
             if(data.length != 0){
-                const token = jwt.sign(req.body, 'secretKey')
+                const token = jwt.sign(req.body.name, 'secretKey')
                 res.cookie(token)
                 console.log({msg: '........youn have logged in successfully...........', token: token})
                 res.json({msg: '........youn have logged in successfully...........', token: token})
